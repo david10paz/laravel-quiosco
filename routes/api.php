@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function(){
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
@@ -27,6 +27,8 @@ Route::middleware('auth:sanctum')->group(function(){
 
     //Almacenar orden
     Route::apiResource('/pedidos', PedidoController::class);
+    Route::apiResource('/categorias', CategoriaController::class);
+    Route::apiResource('/productos', ProductoController::class);
 });
 
 Route::apiResource('/categorias', CategoriaController::class);

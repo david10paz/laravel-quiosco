@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PedidoCollection;
 use App\Models\Pedido;
 use App\Models\PedidoProducto;
 use Carbon\Carbon;
@@ -17,7 +18,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        //
+        return new PedidoCollection(Pedido::with('user')->with('productos')->where('estado', 0)->get());
     }
 
     /**
@@ -78,7 +79,12 @@ class PedidoController extends Controller
      */
     public function update(Request $request, Pedido $pedido)
     {
-        //
+        $pedido->estado = 1;
+        $pedido->save();
+
+        return [
+            'message' =>' Completado el pedido con id: ' . $pedido->id
+        ];
     }
 
     /**
