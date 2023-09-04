@@ -51,8 +51,9 @@ class ProductoController extends Controller
     {
         $producto->disponible = 0;
         $producto->save();
+        
         return[
-            'producto' => $producto . ' -> Ya no disponible'
+            'message' => $producto->nombre . ' -> Ya no disponible'
         ];
     }
 
