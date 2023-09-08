@@ -67,4 +67,22 @@ class ProductoController extends Controller
     {
         //
     }
+
+
+    //Sacamos los productos agotados
+    public function productos_agotados(){
+        return new ProductoCollection(Producto::where('disponible', 0)->orderBy('id', 'DESC')->get());
+    }
+
+
+    //Recuperamos el producto agotado
+    public function recuperar_producto_agotado(Request $request, Producto $producto)
+    {
+        $producto->disponible = 1;
+        $producto->save();
+        
+        return[
+            'message' => $producto->nombre . ' -> Disponible de nuevo'
+        ];
+    }
 }

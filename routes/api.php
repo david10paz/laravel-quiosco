@@ -29,6 +29,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('/pedidos', PedidoController::class);
     Route::apiResource('/categorias', CategoriaController::class);
     Route::apiResource('/productos', ProductoController::class);
+
+    Route::get('/productos-agotados', [ProductoController::class, 'productos_agotados']);
+    Route::put('/productos-agotados/{producto}', [ProductoController::class, 'recuperar_producto_agotado']);
 });
 
 Route::apiResource('/categorias', CategoriaController::class);
